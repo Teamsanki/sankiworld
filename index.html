@@ -19,14 +19,13 @@
             height: 100vh;
         }
 
-        /* Card Styling with Rainbow Animation */
+        /* Card with Rainbow Animation */
         .card {
             width: 400px;
             padding: 30px;
             text-align: center;
             border-radius: 20px;
             position: relative;
-            z-index: 1;
             animation: rainbow 5s linear infinite;
             background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
             background-size: 400% 400%;
@@ -42,12 +41,30 @@
             }
         }
 
-        /* Animated Text with Wave */
+        /* Circular Profile Image */
+        .profile-pic img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 20px;
+            animation: rotatePhoto 10s infinite linear;
+        }
+
+        @keyframes rotatePhoto {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animated Text */
         h1 {
             font-size: 32px;
             margin: 10px 0;
             text-transform: uppercase;
-            color: white;
             background: linear-gradient(90deg, #0077b6, #00ffdd, #ff00ff);
             background-size: 200% 200%;
             -webkit-background-clip: text;
@@ -64,74 +81,46 @@
             }
         }
 
-        /* Description */
-        .description {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        .description ul {
-            list-style: square;
-            padding-left: 20px;
-            text-align: left;
-        }
-
-        /* Buttons */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-icons a {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #222;
-            border-radius: 50%;
-            overflow: hidden;
+        /* Earthquake Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            display: none;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            text-align: center;
             color: white;
-            text-decoration: none;
-            transition: transform 0.3s ease, background 0.3s ease;
+            font-size: 24px;
+            line-height: 100vh;
         }
 
-        .social-icons a:hover {
-            transform: scale(1.1);
-            background: #0077b6;
+        .earthquake .card {
+            animation: shake 0.3s infinite linear;
         }
 
-        .social-icons img {
-            width: 30px;
-        }
-
-        /* Earthquake Effect */
-        .earthquake {
-            animation: shake 0.2s infinite linear;
+        .earthquake .profile-pic img {
+            animation: shake 0.3s infinite linear;
         }
 
         @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            25% { transform: translate(-1px, -2px) rotate(-1deg); }
-            50% { transform: translate(-3px, 0px) rotate(1deg); }
+            0% { transform: translate(2px, 1px) rotate(0deg); }
+            25% { transform: translate(-1px, -3px) rotate(-1deg); }
+            50% { transform: translate(-4px, 0px) rotate(1deg); }
             75% { transform: translate(3px, 2px) rotate(0deg); }
             100% { transform: translate(1px, -1px) rotate(-1deg); }
-        }
-
-        /* Shake Counter Message */
-        .shake-message {
-            position: absolute;
-            top: 20px;
-            font-size: 18px;
-            color: red;
-            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div id="shakeMessage" class="shake-message">Shake detected: 0</div>
+    <div id="earthquakeOverlay" class="overlay">Earthquake Detected! Hold Tight!</div>
     <div class="card" id="card">
+        <div class="profile-pic">
+            <img src="https://graph.org/file/ae1108390e6dc4f7231cf-ce089431124e12e862.jpg" alt="Profile">
+        </div>
         <h1>TEAM SANKI</h1>
         <div class="description">
             <p>About Us:</p>
@@ -143,41 +132,38 @@
                 <li>Shayari Writers</li>
             </ul>
         </div>
-        <div class="social-icons">
-            <a href="https://telegram.org" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
-            </a>
-            <a href="https://github.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
-            </a>
-            <a href="https://twitter.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter">
-            </a>
-        </div>
     </div>
 
     <script>
         let shakeCount = 0;
         let shakeTimeout;
 
-        // Detect device motion (shake effect)
-        window.addEventListener("devicemotion", function (event) {
+        function triggerEarthquake() {
             const card = document.getElementById("card");
-            const shakeMessage = document.getElementById("shakeMessage");
-            const threshold = 15; // Sensitivity for shake
+            const overlay = document.getElementById("earthquakeOverlay");
+
+            // Increment shake count
+            shakeCount++;
+            overlay.style.display = "block";
+            card.classList.add("earthquake");
+
+            // Stop shaking after `shakeCount` seconds
+            clearTimeout(shakeTimeout);
+            shakeTimeout = setTimeout(() => {
+                card.classList.remove("earthquake");
+                overlay.style.display = "none";
+            }, shakeCount * 1000);
+        }
+
+        // Detect device motion
+        window.addEventListener("devicemotion", function (event) {
+            const threshold = 15; // Shake sensitivity
 
             if (
                 Math.abs(event.acceleration.x) > threshold ||
                 Math.abs(event.acceleration.y) > threshold
             ) {
-                shakeCount++;
-                shakeMessage.textContent = `Shake detected: ${shakeCount}`;
-                card.classList.add("earthquake");
-
-                clearTimeout(shakeTimeout);
-                shakeTimeout = setTimeout(() => {
-                    card.classList.remove("earthquake");
-                }, shakeCount * 1000); // Shake lasts for `shakeCount` seconds
+                triggerEarthquake();
             }
         });
     </script>
