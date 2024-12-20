@@ -3,38 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEAM SANKI</title>
+    <title>SANKI Portfolio</title>
     <style>
         /* General Styles */
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: black;
+            font-family: "Arial", sans-serif;
+            background: linear-gradient(to bottom, #141e30, #243b55);
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
         }
 
-        .container {
+        .card {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
             text-align: center;
+            position: relative;
         }
 
-        /* Profile Circle */
+        /* Circle for Photo */
         .circle {
-            width: 150px;
-            height: 150px;
+            width: 80px;
+            height: 80px;
             margin: 0 auto 20px;
-            border: 5px solid #0077b6;
             border-radius: 50%;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: pulse 2s infinite;
+            border: 2px solid #00adb5;
         }
 
         .circle img {
@@ -43,50 +48,53 @@
             object-fit: cover;
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
+        /* Name Styling */
+        .name {
+            font-size: 26px;
+            font-weight: bold;
+            font-family: "Georgia", serif;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff7eb3);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
         }
 
-        /* Typing Animation */
-        .typing {
-            display: inline-block;
-            font-size: 24px;
-            color: cyan;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid;
-            animation: typing 3s steps(20) infinite, blink 0.5s step-end infinite;
+        /* About Points */
+        .about {
+            text-align: left;
+            margin: 15px 0;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #e0e0e0;
         }
 
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
+        .about ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
         }
 
-        @keyframes blink {
-            from, to {
-                border-color: transparent;
-            }
-            50% {
-                border-color: cyan;
-            }
+        .about li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .about li:before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #00adb5;
         }
 
         /* Buttons Section */
         .buttons {
-            margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .buttons a {
@@ -96,97 +104,43 @@
             color: white;
             padding: 10px 20px;
             overflow: hidden;
-            border: 2px solid white;
+            border: 2px solid #0077b6;
             border-radius: 25px;
             transition: 0.3s;
-        }
-
-        .buttons a span {
-            position: absolute;
-            display: block;
-            background: #0077b6;
-            transition: 0.4s ease-in-out;
-        }
-
-        /* Top Slide */
-        .buttons a span:nth-child(1) {
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-        }
-
-        /* Right Slide */
-        .buttons a span:nth-child(2) {
-            top: -100%;
-            right: 0;
-            width: 2px;
-            height: 100%;
-        }
-
-        /* Bottom Slide */
-        .buttons a span:nth-child(3) {
-            bottom: 0;
-            right: -100%;
-            width: 100%;
-            height: 2px;
-        }
-
-        /* Left Slide */
-        .buttons a span:nth-child(4) {
-            bottom: -100%;
-            left: 0;
-            width: 2px;
-            height: 100%;
-        }
-
-        /* Hover Animation */
-        .buttons a:hover span:nth-child(1) {
-            left: 0;
-        }
-
-        .buttons a:hover span:nth-child(2) {
-            top: 0;
-        }
-
-        .buttons a:hover span:nth-child(3) {
-            right: 0;
-        }
-
-        .buttons a:hover span:nth-child(4) {
-            bottom: 0;
+            background-color: #0077b6;
         }
 
         .buttons a:hover {
-            background: #0077b6;
-            color: white;
+            background: white;
+            color: #0077b6;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Profile Section -->
+    <div class="card">
+        <!-- Circle for Photo -->
         <div class="circle">
-            <img src="https://graph.org/file/cfdf03d8155f959c18668-3c90376a72789999f1.jpg" alt="Profile">
+            <img src="https://t.me/I__am__Sanki/profile.jpg" alt="Profile Photo">
         </div>
 
-        <!-- Typing Animation -->
-        <div class="typing">TEAM SANKI</div>
+        <!-- Name -->
+        <div class="name">⌯ 𝐒 𝐀 𝐍 𝐊 𝐈 🜲 💸 𝐱𝗗</div>
 
-        <!-- Portfolection -->
+        <!-- About Points -->
+        <div class="about">
+            <ul>
+                <li>Bot Developer with expertise in Telegram.</li>
+                <li>Professional in Python and HTML development.</li>
+                <li>Experienced in creating interactive UI/UX.</li>
+                <li>Founder of TEAM SANKI Network.</li>
+                <li>Telegram channel manager with great reach.</li>
+            </ul>
+        </div>
+
+        <!-- Buttons -->
         <div class="buttons">
-            <a href="https://t.me/TSGCODER" target="_blank">
-                <span></span><span></span><span></span><span></span>
-                Telegram
-            </a>
-            <a href="https://github.com/Teamsanki" target="_blank">
-                <span></span><span></span><span></span><span></span>
-                GitHub
-            </a>
-            <a href="https://twitter.com" target="_blank">
-                <span></span><span></span><span></span><span></span>
-                Twitter
-            </a>
+            <a href="https://t.me/Teamsankinetworkk" target="_blank">Telegram Channel</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
         </div>
     </div>
 </body>
