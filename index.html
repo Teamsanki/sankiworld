@@ -13,10 +13,10 @@
             background: black;
             color: white;
             overflow: hidden;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         /* Card with Rainbow Animation */
@@ -30,7 +30,6 @@
             background-size: 400% 400%;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
             animation: rainbow 5s linear infinite;
-            transition: transform 0.3s ease-in-out;
         }
 
         @keyframes rainbow {
@@ -73,7 +72,7 @@
         }
 
         /* Earthquake Effect */
-        .earthquake .card {
+        .earthquake {
             animation: shake 0.3s infinite linear;
         }
 
@@ -85,20 +84,6 @@
             100% { transform: translate(1px, -1px) rotate(-1deg); }
         }
 
-        /* Split Card Animation */
-        .card.split {
-            transform: scale(1.1);
-            animation: splitCard 0.5s forwards;
-        }
-
-        @keyframes splitCard {
-            0% { transform: scale(1); }
-            100% {
-                transform: scale(0.8) rotate(-20deg);
-                opacity: 0;
-            }
-        }
-
         /* Earthquake Count and Frequency */
         .info {
             position: fixed;
@@ -108,6 +93,15 @@
             color: white;
             padding: 10px;
             border-radius: 10px;
+        }
+
+        .description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .description ul li {
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -139,6 +133,7 @@
         let lastShakeTime = Date.now();
         const info = document.getElementById("info");
         const card = document.getElementById("card");
+        const body = document.body;
 
         function updateInfo() {
             const now = Date.now();
@@ -154,20 +149,13 @@
             shakeCount++;
             lastShakeTime = Date.now();
 
-            card.classList.add("earthquake");
+            // Add earthquake effect to the entire body
+            body.classList.add("earthquake");
 
-            // Stop shaking after 3 seconds
+            // Stop shaking after 5 seconds
             setTimeout(() => {
-                card.classList.remove("earthquake");
-            }, 3000);
-
-            // If shake count is too high, split the card
-            if (shakeCount >= 5) {
-                card.classList.add("split");
-                setTimeout(() => {
-                    alert("The card has split! Please reload the page.");
-                }, 500);
-            }
+                body.classList.remove("earthquake");
+            }, 5000);
 
             updateInfo();
         }
