@@ -5,220 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEAM SANKI Portfolio</title>
     <style>
-        /* Global Styling */
+        /* General Styles */
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: black;
+            background-color: black;
             color: white;
-            overflow: hidden;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* Card with Rainbow Animation */
-        .card {
-            width: 400px;
-            padding: 30px;
+        .container {
             text-align: center;
-            border-radius: 20px;
-            position: relative;
-            background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-            background-size: 400% 400%;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
-            animation: rainbow 5s linear infinite;
         }
 
-        @keyframes rainbow {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
-
-        /* Circular Profile Image */
-        .profile-pic img {
-            width: 120px;
-            height: 120px;
+        /* Profile Circle */
+        .circle {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border: 5px solid #0077b6;
             border-radius: 50%;
-            border: 3px solid white;
-            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 2s infinite;
         }
 
-        /* Animated Text */
-        h1 {
-            font-size: 32px;
-            margin: 10px 0;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, #0077b6, #00ffdd, #ff00ff);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: waveText 3s infinite linear;
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        @keyframes waveText {
-            0% {
-                background-position: 0% 50%;
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
             }
-            100% {
-                background-position: 100% 50%;
+            50% {
+                transform: scale(1.1);
             }
         }
 
-        /* Social Buttons */
-        .social-icons {
+        /* Typing Animation */
+        .typing {
+            display: inline-block;
+            font-size: 24px;
+            color: cyan;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid;
+            animation: typing 3s steps(20) infinite, blink 0.5s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: cyan;
+            }
+        }
+
+        /* Buttons Section */
+        .buttons {
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 20px;
         }
 
-        .social-icons a {
+        .buttons a {
             position: relative;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: black;
-            border-radius: 50%;
-            color: white;
-            font-size: 22px;
             text-decoration: none;
-            overflow: hidden;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            transform: scale(1.1);
-            background: #0077b6;
-        }
-
-        .social-icons img {
-            width: 30px;
-        }
-
-        /* Earthquake Count and Frequency */
-        .info {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.7);
+            font-size: 16px;
             color: white;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 14px;
+            padding: 10px 20px;
+            overflow: hidden;
+            border: 2px solid white;
+            border-radius: 25px;
+            transition: 0.3s;
         }
 
-        /* Earthquake Effect */
-        .shaking {
-            animation: shake 0.3s infinite;
+        .buttons a span {
+            position: absolute;
+            display: block;
+            background: #0077b6;
+            transition: 0.4s ease-in-out;
         }
 
-        @keyframes shake {
-            0% { transform: translate(2px, 1px) rotate(0deg); }
-            25% { transform: translate(-1px, -3px) rotate(-1deg); }
-            50% { transform: translate(-4px, 0px) rotate(1deg); }
-            75% { transform: translate(3px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -1px) rotate(-1deg); }
+        /* Top Slide */
+        .buttons a span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
         }
 
-        .scattered {
-            animation: scatter 2s ease-out;
+        /* Right Slide */
+        .buttons a span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
         }
 
-        @keyframes scatter {
-            from {
-                transform: translate(0, 0);
-            }
-            to {
-                transform: translate(calc(-50px + 100px * random()), calc(-50px + 100px * random()));
-            }
+        /* Bottom Slide */
+        .buttons a span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+        }
+
+        /* Left Slide */
+        .buttons a span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+        }
+
+        /* Hover Animation */
+        .buttons a:hover span:nth-child(1) {
+            left: 0;
+        }
+
+        .buttons a:hover span:nth-child(2) {
+            top: 0;
+        }
+
+        .buttons a:hover span:nth-child(3) {
+            right: 0;
+        }
+
+        .buttons a:hover span:nth-child(4) {
+            bottom: 0;
+        }
+
+        .buttons a:hover {
+            background: #0077b6;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="info" id="info">
-        <p>Earthquake Count: 0</p>
-        <p>Frequency: 0 shakes/min</p>
-    </div>
-
-    <div class="card" id="card">
-        <div class="profile-pic">
-            <img src="https://graph.org/file/ae1108390e6dc4f7231cf-ce089431124e12e862.jpg" alt="Profile">
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="circle">
+            <img src="https://via.placeholder.com/150" alt="Profile">
         </div>
-        <h1>TEAM SANKI</h1>
-        <p>Bot Developers | App Developers | Python & HTML Experts</p>
-        <div class="social-icons">
+
+        <!-- Typing Animation -->
+        <div class="typing">TEAM SANKI Portfolio</div>
+
+        <!-- Buttons Section -->
+        <div class="buttons">
             <a href="https://telegram.org" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+                <span></span><span></span><span></span><span></span>
+                Telegram
             </a>
             <a href="https://github.com" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+                <span></span><span></span><span></span><span></span>
+                GitHub
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <span></span><span></span><span></span><span></span>
+                Twitter
             </a>
         </div>
     </div>
-
-    <script>
-        let shakeCount = 0;
-        let lastShakeTime = Date.now();
-
-        const info = document.getElementById("info");
-        const card = document.getElementById("card");
-        const socialIcons = document.querySelectorAll(".social-icons a");
-
-        function randomValue() {
-            return Math.random() * 2 - 1;
-        }
-
-        function updateInfo() {
-            const now = Date.now();
-            const timeDiff = (now - lastShakeTime) / 60000; // Minutes
-            const frequency = (shakeCount / timeDiff).toFixed(2);
-            info.innerHTML = `
-                <p>Earthquake Count: ${shakeCount}</p>
-                <p>Frequency: ${frequency || 0} shakes/min</p>
-            `;
-        }
-
-        function triggerEarthquake() {
-            shakeCount++;
-            lastShakeTime = Date.now();
-
-            // Add shaking effect
-            card.classList.add("shaking");
-
-            // Scatter elements
-            socialIcons.forEach(icon => {
-                icon.style.transform = `translate(${randomValue() * 100}px, ${randomValue() * 100}px)`;
-            });
-
-            // Stop shaking after 5 seconds
-            setTimeout(() => {
-                card.classList.remove("shaking");
-                socialIcons.forEach(icon => (icon.style.transform = ""));
-            }, 5000);
-
-            updateInfo();
-        }
-
-        // Detect device motion
-        window.addEventListener("devicemotion", function (event) {
-            const threshold = 15; // Shake sensitivity
-
-            if (
-                Math.abs(event.acceleration.x) > threshold ||
-                Math.abs(event.acceleration.y) > threshold
-            ) {
-                triggerEarthquake();
-            }
-        });
-    </script>
 </body>
 </html>
