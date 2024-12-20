@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gautam Kumar Portfolio</title>
+    <style>
+        /* Global Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Background animation */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/3/3a/Network_diagram_background.png') no-repeat center center/cover;
+            z-index: -1;
+        }
+
+        /* Card Styling */
+        .card {
+            background: linear-gradient(135deg, #ff9933, white, #138808);
+            width: 350px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            background: black;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-pic img {
+            width: 90%;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 10px 0;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: black;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #0077b6;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="card">
+        <div class="profile-pic">
+            <!-- Placeholder for Profile Image -->
+            <img src="https://graph.org/file/ae1108390e6dc4f7231cf-ce089431124e12e862.jpg" alt="Profile">
+        </div>
+        <h1>Gautam Kumar</h1>
+        <p class="tagline">Still Struggling a.t.m</p>
+        <div class="social-icons">
+            <a href="https://twitter.com" target="_blank">T</a>
+            <a href="https://github.com" target="_blank">G</a>
+            <a href="https://telegram.org" target="https://t.me/TSGCODER">Tg</a>
+        </div>
+        <footer>&copy; 2024 Gautam Kumar</footer>
+    </div>
+</body>
+</html>
