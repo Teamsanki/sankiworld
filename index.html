@@ -10,11 +10,11 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: black;
+            background: #000;
             color: white;
             overflow: hidden;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             height: 100vh;
         }
@@ -28,7 +28,7 @@
             height: 100%;
             background: url('https://upload.wikimedia.org/wikipedia/commons/3/3a/Network_diagram_background.png') no-repeat center center/cover;
             z-index: -1;
-            animation: moveBackground 15s linear infinite;
+            animation: moveBackground 10s linear infinite;
         }
 
         @keyframes moveBackground {
@@ -43,18 +43,27 @@
         /* Card Styling */
         .card {
             background: linear-gradient(135deg, #ff9933, white, #138808);
-            width: 400px;
-            padding: 30px;
+            width: 500px;
+            padding: 40px;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
-            margin-top: 50px;
+        }
+
+        /* Profile Image */
+        .profile-pic img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 20px;
         }
 
         /* Animated Name */
         h1 {
             font-size: 28px;
             margin: 10px 0;
+            color: black;
             text-transform: uppercase;
             background: linear-gradient(90deg, #ff9933, #138808, #0077b6);
             background-clip: text;
@@ -72,21 +81,9 @@
             }
         }
 
-        /* Profile Image */
-        .profile-pic img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid white;
-            margin-bottom: 20px;
-        }
-
-        /* About Section */
         .description {
-            font-size: 16px;
+            font-size: 18px;
             margin-bottom: 20px;
-            color: black;
-            font-weight: bold;
         }
 
         /* Social Buttons */
@@ -97,16 +94,34 @@
         }
 
         .social-icons a {
-            width: 50px;
-            height: 50px;
-            background: black;
-            border-radius: 50%;
+            position: relative;
+            width: 70px;
+            height: 70px;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            background: black;
+            border-radius: 50%;
+            overflow: hidden;
             transition: transform 0.3s ease, background 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icons a img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .social-icons a span {
+            position: absolute;
+            bottom: -100%;
+            font-size: 14px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover span {
+            bottom: 10px;
         }
 
         .social-icons a:hover {
@@ -114,39 +129,11 @@
             background: #0077b6;
         }
 
-        .social-icons img {
-            width: 24px;
-        }
-
-        /* Visitor List */
-        .visitor-list {
+        /* Footer */
+        footer {
             margin-top: 20px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-        }
-
-        .visitor-list h3 {
-            margin-bottom: 10px;
-            font-size: 18px;
-            text-align: center;
-        }
-
-        .visitor-list ul {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-        }
-
-        .visitor-list ul li {
             font-size: 14px;
-            margin: 5px 0;
-            padding: 5px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            color: #0077b6;
+            color: rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
@@ -157,76 +144,25 @@
             <img src="https://graph.org/file/ae1108390e6dc4f7231cf-ce089431124e12e862.jpg" alt="Profile">
         </div>
         <h1>SANKI</h1>
-        <p class="description">Hi, I am Sanki. Welcome to my personal website!</p>
+        <p class="description">
+            Hi, I am SANKI. I am a Bot Developer, App Developer, and CSE student. 
+            I love Python, HTML, and writing Shayari!
+        </p>
         <div class="social-icons">
-            <a href="https://t.me/TS_XD_MUSIC_BOT" target="_blank">
-                <img src="https://graph.org/file/87632fa4066567cb81193-b3d5ddc3bdd6d2172b.jpg" alt="Telegram">
+            <a href="https://telegram.org" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+                <span>Telegram</span>
+            </a>
+            <a href="https://github.com" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+                <span>GitHub</span>
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter">
+                <span>Twitter</span>
             </a>
         </div>
+        <footer>&copy; 2024 SANKI</footer>
     </div>
-    <div class="visitor-list">
-        <h3>Recent Visitors:</h3>
-        <ul id="visitor-list">
-            <!-- Visitor names will load dynamically -->
-        </ul>
-    </div>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
-
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAemwBwNix4TbWHA7vrh5ubQaRqEY8VWKk",
-      authDomain: "social-bite-skofficial.firebaseapp.com",
-      databaseURL: "https://social-bite-skofficial-default-rtdb.firebaseio.com",
-      projectId: "social-bite-skofficial",
-      storageBucket: "social-bite-skofficial.appspot.com",
-      messagingSenderId: "239722707022",
-      appId: "1:239722707022:web:57d9b173f2163e85be2b1f"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-
-        // Save Visitor From URL
-        function saveVisitorFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const username = urlParams.get('user');
-            if (username) {
-                const visitorRef = db.ref('visitors');
-                const newVisitor = visitorRef.push();
-                newVisitor.set({ name: username, date: new Date().toISOString() })
-                    .then(() => {
-                        console.log('Visitor saved:', username);
-                        loadVisitors();
-                    })
-                    .catch(error => console.error('Error saving visitor:', error));
-            }
-        }
-
-        // Load Visitor Data
-        function loadVisitors() {
-            const visitorRef = db.ref('visitors');
-            visitorRef.orderByChild('date').limitToLast(10).on('value', snapshot => {
-                const visitorList = document.getElementById('visitor-list');
-                visitorList.innerHTML = ''; // Clear the list
-                snapshot.forEach(childSnapshot => {
-                    const visitor = childSnapshot.val();
-                    const listItem = document.createElement('li');
-                    listItem.textContent = visitor.name;
-                    visitorList.appendChild(listItem);
-                });
-            });
-        }
-
-        // Call on page load
-        window.onload = () => {
-            saveVisitorFromURL();
-            loadVisitors();
-        };
-    </script>
 </body>
 </html>
