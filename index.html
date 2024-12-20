@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANKI Portfolio</title>
+    <title>TEAM SANKI Portfolio</title>
     <style>
         /* Global Styling */
         body {
@@ -19,7 +19,7 @@
             height: 100vh;
         }
 
-        /* Background Waves Animation */
+        /* Background Water Waves */
         .background {
             position: absolute;
             top: 0;
@@ -30,49 +30,73 @@
             z-index: -1;
         }
 
-        .background .wave {
+        .wave {
             position: absolute;
             width: 200%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            top: 0;
-            left: -100%;
-            animation: waveAnimation 6s linear infinite;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 119, 255, 0.5) 40%, transparent 80%);
+            animation: waveMove 8s infinite linear;
             transform: rotate(0deg);
         }
 
-        .background .wave:nth-child(2) {
+        .wave:nth-child(2) {
             animation-delay: 2s;
             transform: rotate(180deg);
         }
 
-        @keyframes waveAnimation {
+        @keyframes waveMove {
             0% {
-                transform: translateX(0);
+                transform: translateX(-50%) translateY(-50%) scale(1);
             }
             100% {
-                transform: translateX(100%);
+                transform: translateX(50%) translateY(50%) scale(1.2);
             }
         }
 
-        /* Card Styling with Animation */
+        /* Card Styling */
         .card {
+            background: linear-gradient(135deg, #0033cc, #0099ff, #66ccff);
             width: 450px;
             padding: 40px;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
-            background: linear-gradient(135deg, #ff9933, #138808, #0077b6);
-            background-size: 400% 400%;
-            animation: cardAnimation 6s linear infinite;
+            animation: cardShake 0.5s infinite paused;
         }
 
-        @keyframes cardAnimation {
+        @keyframes cardShake {
             0% {
-                background-position: 0% 50%;
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(-5px, 5px) rotate(-1deg);
+            }
+            50% {
+                transform: translate(5px, -5px) rotate(1deg);
+            }
+            75% {
+                transform: translate(-5px, 5px) rotate(-1deg);
             }
             100% {
-                background-position: 100% 50%;
+                transform: translate(0, 0);
+            }
+        }
+
+        /* Animated Name */
+        h1 {
+            font-size: 32px;
+            margin: 10px 0;
+            text-transform: uppercase;
+            color: #0099ff;
+            animation: waveText 2s infinite ease-in-out;
+        }
+
+        @keyframes waveText {
+            0%, 100% {
+                text-shadow: 0 0 10px #0099ff, 0 0 20px #00ccff, 0 0 30px #66ccff;
+            }
+            50% {
+                text-shadow: 0 0 20px #0066cc, 0 0 30px #0033cc, 0 0 40px #0019ff;
             }
         }
 
@@ -85,28 +109,7 @@
             margin-bottom: 20px;
         }
 
-        /* Animated Name */
-        h1 {
-            font-size: 32px;
-            margin: 10px 0;
-            text-transform: uppercase;
-            animation: textColorChange 3s linear infinite;
-            background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        @keyframes textColorChange {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
-
-        /* Description Points */
+        /* Description */
         .description {
             font-size: 18px;
             margin-bottom: 20px;
@@ -118,7 +121,7 @@
             padding-left: 20px;
         }
 
-        /* Social Buttons */
+        /* Buttons */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -133,21 +136,19 @@
             align-items: center;
             background: black;
             border-radius: 50%;
-            color: white;
-            font-size: 22px;
-            text-decoration: none;
             overflow: hidden;
+            color: white;
+            text-decoration: none;
             transition: transform 0.3s ease, background 0.3s ease;
         }
 
         .social-icons a:hover {
             transform: scale(1.1);
-            background: #0077b6;
+            background: #00ccff;
         }
 
         .social-icons img {
             width: 30px;
-            height: 30px;
         }
 
         /* Footer */
@@ -163,19 +164,19 @@
         <div class="wave"></div>
         <div class="wave"></div>
     </div>
-    <div class="card">
+    <div class="card" id="card">
         <div class="profile-pic">
             <img src="https://graph.org/file/ae1108390e6dc4f7231cf-ce089431124e12e862.jpg" alt="Profile">
         </div>
-        <h1>SANKI</h1>
+        <h1>TEAM SANKI</h1>
         <div class="description">
-            <p>Hi, I am:</p>
+            <p>About Us:</p>
             <ul>
-                <li>A Bot Developer</li>
-                <li>An App Developer</li>
-                <li>CSE Student</li>
-                <li>A Python and HTML Expert</li>
-                <li>A Shayari Writer</li>
+                <li>Bot Developers</li>
+                <li>App Developers</li>
+                <li>CS Students</li>
+                <li>Experts in Python & HTML</li>
+                <li>Shayari Writers</li>
             </ul>
         </div>
         <div class="social-icons">
@@ -189,7 +190,21 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter">
             </a>
         </div>
-        <footer>&copy; 2024 SANKI</footer>
+        <footer>&copy; 2024 TEAM SANKI</footer>
     </div>
+
+    <script>
+        // Detect device motion
+        window.addEventListener("devicemotion", function (event) {
+            const card = document.getElementById("card");
+            const threshold = 15; // Sensitivity for shake
+            if (Math.abs(event.acceleration.x) > threshold || Math.abs(event.acceleration.y) > threshold) {
+                card.style.animationPlayState = "running";
+                setTimeout(() => {
+                    card.style.animationPlayState = "paused";
+                }, 500);
+            }
+        });
+    </script>
 </body>
 </html>
