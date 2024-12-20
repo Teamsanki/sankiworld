@@ -40,14 +40,25 @@
             }
         }
 
-        /* Card Styling */
+        /* Card Styling with Animation */
         .card {
-            background: linear-gradient(135deg, #ff9933, white, #138808);
             width: 500px;
             padding: 40px;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            animation: cardAnimation 6s linear infinite;
+            background: linear-gradient(135deg, #ff9933, #138808, #0077b6);
+            background-size: 400% 400%;
+        }
+
+        @keyframes cardAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
         }
 
         /* Profile Image */
@@ -63,27 +74,34 @@
         h1 {
             font-size: 28px;
             margin: 10px 0;
-            color: black;
+            color: white;
             text-transform: uppercase;
-            background: linear-gradient(90deg, #ff9933, #138808, #0077b6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: slideText 3s infinite linear;
+            animation: textColorChange 6s linear infinite;
+            background: transparent;
         }
 
-        @keyframes slideText {
+        @keyframes textColorChange {
             0% {
-                background-position: 0% 50%;
+                color: #ff9933;
+            }
+            50% {
+                color: #138808;
             }
             100% {
-                background-position: 100% 50%;
+                color: #0077b6;
             }
         }
 
+        /* Description Points */
         .description {
             font-size: 18px;
             margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .description ul {
+            list-style: square;
+            padding-left: 20px;
         }
 
         /* Social Buttons */
@@ -91,10 +109,12 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            position: relative;
         }
 
         .social-icons a {
-            position: relative;
+            position: absolute;
+            left: -100px;
             width: 70px;
             height: 70px;
             display: flex;
@@ -103,7 +123,7 @@
             background: black;
             border-radius: 50%;
             overflow: hidden;
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: left 0.5s ease, background 0.3s ease;
             text-decoration: none;
         }
 
@@ -112,21 +132,28 @@
             height: 40px;
         }
 
-        .social-icons a span {
-            position: absolute;
-            bottom: -100%;
-            font-size: 14px;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover span {
-            bottom: 10px;
-        }
-
         .social-icons a:hover {
-            transform: scale(1.1);
             background: #0077b6;
+        }
+
+        .social-icons a:nth-child(1) {
+            top: 0;
+            transition-delay: 0.1s;
+        }
+
+        .social-icons a:nth-child(2) {
+            top: 80px;
+            transition-delay: 0.2s;
+        }
+
+        .social-icons a:nth-child(3) {
+            top: 160px;
+            transition-delay: 0.3s;
+        }
+
+        /* Slide Animation for Buttons */
+        .social-icons a:hover {
+            left: 20px;
         }
 
         /* Footer */
@@ -144,22 +171,25 @@
             <img src="https://graph.org/file/ae1108390e6dc4f7231cf-ce089431124e12e862.jpg" alt="Profile">
         </div>
         <h1>SANKI</h1>
-        <p class="description">
-            Hi, I am SANKI. I am a Bot Developer, App Developer, and CSE student. 
-            I love Python, HTML, and writing Shayari!
-        </p>
+        <div class="description">
+            <p>Hi, I am:</p>
+            <ul>
+                <li>A Bot Developer</li>
+                <li>An App Developer</li>
+                <li>CSE Student</li>
+                <li>A Python and HTML Expert</li>
+                <li>A Shayari Writer</li>
+            </ul>
+        </div>
         <div class="social-icons">
             <a href="https://telegram.org" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
-                <span>Telegram</span>
             </a>
             <a href="https://github.com" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
-                <span>GitHub</span>
             </a>
             <a href="https://twitter.com" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter">
-                <span>Twitter</span>
             </a>
         </div>
         <footer>&copy; 2024 SANKI</footer>
