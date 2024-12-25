@@ -3,159 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANKI Portfolio</title>
-    <style>
-        /* General Styles */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Arial", sans-serif;
-            background: linear-gradient(to bottom, #141e30, #243b55);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .card {
-            background: #1e293b;
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        /* Circle for Photo */
-        .circle {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid #00adb5;
-        }
-
-        .circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Name Styling */
-        .name {
-            font-size: 26px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* About Points */
-        .about {
-            text-align: left;
-            margin: 15px 0;
-            font-size: 14px;
-            line-height: 1.8;
-            color: #e0e0e0;
-        }
-
-        .about ul {
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-        }
-
-        .about li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .about li:before {
-            content: "✔";
-            position: absolute;
-            left: 0;
-            color: #00adb5;
-        }
-
-        /* Buttons Section */
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .buttons a {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            text-decoration: none;
-            border-radius: 50%;
-            background-color: #0077b6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .buttons a:hover {
-            background: #00adb5;
-            transform: scale(1.1);
-        }
-
-        .buttons a img {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Clickable Animation */
-        .buttons a:active {
-            transform: scale(0.9);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-    </style>
+    <title>Music Room - {{ group_name }}</title>
 </head>
 <body>
-    <div class="card">
-        <!-- Circle for Photo -->
-        <div class="circle">
-            <img src="https://graph.org/file/cfdf03d8155f959c18668-3c90376a72789999f1.jpg" alt="Profile Photo">
-        </div>
-
-        <!-- Name -->
-        <div class="name">⌯ 𝐒 𝐀 𝐍 𝐊 𝐈 🜲 💸 𝐱𝗗</div>
-
-        <!-- About Points -->
-        <div class="about">
-            <ul>
-                <li>Bot Developer with expertise in Telegram.</li>
-                <li>Professional in Python and HTML development.</li>
-                <li>Experienced in creating interactive UI/UX.</li>
-                <li>Founder of TEAM SANKI Network.</li>
-                <li>Telegram channel manager with great reach.</li>
-            </ul>
-        </div>
-
-        <!-- Circle Buttons -->
-        <div class="buttons">
-            <a href="https://t.me/Teamsankinetworkk" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Icon">
-            </a>
-            <a href="https://github.com" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub Icon">
-            </a>
-            <a href="https://t.me/TSGCODER" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Icon">
-            </a>
-        </div>
-    </div>
+    <h1>Music Room - {{ group_name }}</h1>
+    <img src="{{ song_image_url }}" alt="Song Image" style="max-width: 300px;">
+    <audio controls autoplay>
+        <source src="{{ song_url }}" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <h2>Playing: {{ song_name }}</h2>
+    <h3>Users in the room:</h3>
+    <ul>
+        {% for user in users %}
+            <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
